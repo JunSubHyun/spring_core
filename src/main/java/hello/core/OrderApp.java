@@ -11,8 +11,12 @@ import hello.core.order.OrderServicelmpl;
 public class OrderApp {
 
     public static void main(String[] args) {
-        MemberService memberService = new MemberServicelmpl();
-        OrderService orderService = new OrderServicelmpl();
+        //MemberService memberService = new MemberServicelmpl();  -> 의존관계 주입에 의해 필요없어짐
+        //OrderService orderService = new OrderServicelmpl();        -> 의존관계 주입에 의해 필요없어짐
+
+        AppConfig appConfig = new AppConfig();
+        MemberService memberService = appConfig.memberService();
+        OrderService orderService = appConfig.orderService();
 
         Long memberId = 1L;
 

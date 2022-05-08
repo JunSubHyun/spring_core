@@ -1,16 +1,30 @@
 package hello.core.order;
 
+import hello.core.AppConfig;
 import hello.core.member.Grade;
 import hello.core.member.Member;
 import hello.core.member.MemberService;
 import hello.core.member.MemberServicelmpl;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class OrderServiceTest {
 
-    MemberService memberService = new MemberServicelmpl();
-    OrderService orderService = new OrderServicelmpl();
+    //MemberService memberService = new MemberServicelmpl(); -> 의존관계 주입에 의해 필요없어짐
+    //OrderService orderService = new OrderServicelmpl();   -> 의존관계 주입에 의해 필요없어짐
+
+    MemberService memberService;
+    OrderService orderService;
+
+    //@BeforeEach -> 코드를 실행하기전 무조건적인 실행
+    @BeforeEach
+    public void beforeEach(){
+        AppConfig appConfig = new AppConfig();
+        memberService = appConfig.memberService();
+        orderService = appConfig.orderService();
+    }
+
 
     @Test
     void createOrder(){

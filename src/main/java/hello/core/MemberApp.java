@@ -8,7 +8,12 @@ import hello.core.member.MemberServicelmpl;
 public class MemberApp {
 
     public static void main(String[] args) {
-        MemberService memberService = new MemberServicelmpl();
+
+        AppConfig appConfig = new AppConfig();
+        MemberService memberService = appConfig.memberService();
+
+       // MemberService memberService = new MemberServicelmpl();  -> 의존관계 주입으로인해 필요 없어짐
+
         Member member = new Member(1L, "memberA", Grade.VIP);
         memberService.join(member);
 
