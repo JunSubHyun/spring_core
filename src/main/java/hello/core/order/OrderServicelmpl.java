@@ -10,7 +10,7 @@ import hello.core.member.MemoryMemberRepository;
 public class OrderServicelmpl implements OrderService{
 
     //private final MemberRepository memberRepository = new MemoryMemberRepository();-> 생성자 할당의 위해 주석
-   // private final DiscountPolicy discountPolicy = new FixDiscountPolicy();    //고정할인금액
+    //private final DiscountPolicy discountPolicy = new FixDiscountPolicy();    //고정할인금액
     // (추상 인터페이스와 구현체도 의존을 하고있다) -> 추상에만 의존을 해야한다. DIP 위반
     // OrderServicelmpl 을 수정을 해야하는 상황 -> OCP 위반
 
