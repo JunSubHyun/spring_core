@@ -8,23 +8,29 @@ import hello.core.member.MemberServicelmpl;
 import hello.core.member.MemoryMemberRepository;
 import hello.core.order.OrderService;
 import hello.core.order.OrderServicelmpl;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
+@Configuration
 public class AppConfig {
 
     //Service 에서는 실행에만 집중
     //외부에서 의존관계를 주입
     //Dependency Injection : 의존관계 주입 또는 의존성 주입
 
+    @Bean
     public MemberService memberService(){
         return new MemberServicelmpl(memberRepository());
         //자동 리팩토링 : command + option + m
     }
 
-    private MemoryMemberRepository memberRepository() {
+    @Bean
+    public MemoryMemberRepository memberRepository() {
         return new MemoryMemberRepository();
         //회원 저장에 대한 부분을 수정할 때 이 부분만 교체
     }
 
+    @Bean
     public OrderService orderService(){
 
         //FixDiscountPolicy 주입 시 (생성자 주입)
@@ -34,6 +40,7 @@ public class AppConfig {
         //return new OrderServicelmpl(new MemoryMemberRepository(),new RateDiscountPolicy());
     }
 
+    @Bean
     public DiscountPolicy discountPolicy(){
         //할인정책에 대한 교체시 이부분 교체
 

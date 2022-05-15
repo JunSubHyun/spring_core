@@ -7,6 +7,8 @@ import hello.core.member.MemberServicelmpl;
 import hello.core.order.Order;
 import hello.core.order.OrderService;
 import hello.core.order.OrderServicelmpl;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class OrderApp {
 
@@ -14,9 +16,15 @@ public class OrderApp {
         //MemberService memberService = new MemberServicelmpl();  -> 의존관계 주입에 의해 필요없어짐
         //OrderService orderService = new OrderServicelmpl();        -> 의존관계 주입에 의해 필요없어짐
 
-        AppConfig appConfig = new AppConfig();
-        MemberService memberService = appConfig.memberService();
-        OrderService orderService = appConfig.orderService();
+//        AppConfig appConfig = new AppConfig();
+//        MemberService memberService = appConfig.memberService();
+//        OrderService orderService = appConfig.orderService();
+
+        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(AppConfig.class);
+
+        MemberService memberService = applicationContext.getBean("memberService",MemberService.class);
+        OrderService orderService = applicationContext.getBean("orderService",OrderService.class);
+
 
         Long memberId = 1L;
 
